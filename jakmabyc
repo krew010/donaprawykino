@@ -1,0 +1,38 @@
+#include <iostream>
+
+// Poprawny nagłówek funkcji akceptującej tablicę 2D
+bool czyzajete(int x, int y, int miejsca[3][4]){
+    return miejsca[x][y] == 1; 
+}
+
+int main(){
+    // 1. Najpierw tworzymy i zapełniamy kino
+    int miejsca[3][4];
+    for (int i=0; i<3; i++){
+        for (int j=0; j<4; j++){
+            if (j % 2 == 0) {
+                miejsca[i][j] = 1;
+            } else {
+                miejsca[i][j] = 0;
+            }
+        }
+    }
+
+    // 2. Witamy użytkownika
+    std::cout << "Witaj w systemie rezerwacji miejsc w kinie!" << std::endl;
+    std::cout << "Podaj nr rzedu (0-2) i miejsca (0-3): " << std::endl;
+    int x, y;
+    std::cin >> x >> y;
+
+    std::cout << std::endl;
+
+    // 3. Sprawdzamy stan - przekazujemy samą nazwę tablicy "miejsca"
+    if(czyzajete(x, y, miejsca)){
+        std::cout << "Miejsce jest zajete, wybierz inne miejsce!" << std::endl;
+    } else {
+        std::cout << "Miejsce jest wolne, rezerwacja udana!" << std::endl;
+        miejsca[x][y] = 1; // Zmieniamy status na zajęte
+    }
+
+    return 0;
+}
